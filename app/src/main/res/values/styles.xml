@@ -44,8 +44,8 @@
 
     <!-- Dialog进入及退出动画 -->
     <style name="RightToLeftAnim" parent="android:Animation">
-        <item name="@android:windowEnterAnimation">@anim/right_in</item>
-        <item name="@android:windowExitAnimation">@anim/right_out</item>
+        <item name="android:windowEnterAnimation">@anim/right_in</item>
+        <item name="android:windowExitAnimation">@anim/right_out</item>
     </style>
 
 </resources>

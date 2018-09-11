@@ -70,7 +70,7 @@ public class FliterDialogFragment extends DialogFragment {
              ***/
             window.getDecorView().setPadding(0, 0, 0, 0);
             WindowManager.LayoutParams lp = window.getAttributes();
-            lp.width = (int) (getScreenWidthAndHight(getActivity())[0] * 0.8);
+            lp.width = (int) (getScreenWidthAndHight(getActivity())[0] * 0.75);
             lp.height = ViewGroup.LayoutParams.MATCH_PARENT;
             lp.gravity = Gravity.END;
             window.setAttributes(lp);
