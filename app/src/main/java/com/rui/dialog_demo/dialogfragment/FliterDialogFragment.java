@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
@@ -17,6 +18,9 @@ import android.widget.TextView;
 
 import com.rui.dialog_demo.R;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -26,13 +30,16 @@ import butterknife.Unbinder;
  * Created by rui on 2018/9/11
  */
 public class FliterDialogFragment extends DialogFragment {
-    @BindView(R.id.rv_Data)
+
+    @BindView(R.id.rv_data)
     RecyclerView rvData;
     @BindView(R.id.tv_reset)
     TextView tvReset;
     @BindView(R.id.tv_comfirm)
     TextView tvComfirm;
     Unbinder unbinder;
+
+    private FliterAdapter adapter;
 
     public static FliterDialogFragment newInstance() {
         FliterDialogFragment dialogFragment = new FliterDialogFragment();
@@ -57,7 +64,74 @@ public class FliterDialogFragment extends DialogFragment {
     }
 
     private void initView() {
+        adapter = new FliterAdapter(getTestData());
+        LinearLayoutManager manager = new LinearLayoutManager(getActivity());
+        manager.setRecycleChildrenOnDetach(true);
+        rvData.setLayoutManager(manager);
+        adapter.bindToRecyclerView(rvData);
+    }
 
+    private List<ParentModel> getTestData() {
+        ArrayList<ParentModel> data = new ArrayList<>();
+
+        ArrayList<ChildModel> childModels = new ArrayList<>();
+        ChildModel childModel = new ChildModel(1, "比逆");
+        childModels.add(childModel);
+        childModel = new ChildModel(1, "米蜜儿");
+        childModels.add(childModel);
+        childModel = new ChildModel(1, "佩寇");
+        childModels.add(childModel);
+        childModel = new ChildModel(1, "J21");
+        childModels.add(childModel);
+        childModel = new ChildModel(1, "哈乐莱");
+        childModels.add(childModel);
+        childModel = new ChildModel(1, "芒斯特");
+        childModels.add(childModel);
+        childModel = new ChildModel(1, "弗里睿路");
+        childModels.add(childModel);
+        childModel = new ChildModel(1, "U1潮品");
+        childModels.add(childModel);
+        childModel = new ChildModel(1, "野奈");
+        childModels.add(childModel);
+        childModel = new ChildModel(1, "潮流前线");
+        childModels.add(childModel);
+        ParentModel parentModel = new ParentModel(1, "品牌", childModels);
+        data.add(parentModel);
+
+
+        ArrayList<ChildModel> childModels1 = new ArrayList<>();
+
+        childModel = new ChildModel(1, "春季");
+        childModels1.add(childModel);
+        childModel = new ChildModel(1, "夏季");
+        childModels1.add(childModel);
+        childModel = new ChildModel(1, "秋季");
+        childModels1.add(childModel);
+        childModel = new ChildModel(1, "冬季");
+        childModels1.add(childModel);
+        ParentModel parentModel1 = new ParentModel(1, "季节", childModels1);
+        data.add(parentModel1);
+
+        ArrayList<ChildModel> childModels2 = new ArrayList<>();
+
+        childModel = new ChildModel(1, "裤子");
+        childModels2.add(childModel);
+        childModel = new ChildModel(1, "牛仔裤");
+        childModels2.add(childModel);
+        childModel = new ChildModel(1, "T恤");
+        childModels2.add(childModel);
+        childModel = new ChildModel(1, "衬衣");
+        childModels2.add(childModel);
+        childModel = new ChildModel(1, "针织衫");
+        childModels2.add(childModel);
+        childModel = new ChildModel(1, "风衣");
+        childModels2.add(childModel);
+        childModel = new ChildModel(1, "毛衣");
+        childModels2.add(childModel);
+        ParentModel parentModel2 = new ParentModel(1, "男装", childModels2);
+        data.add(parentModel2);
+
+        return data;
     }
 
     private void initParams() {

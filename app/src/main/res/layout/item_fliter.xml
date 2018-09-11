@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <CheckBox
+        android:id="@+id/ck_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:button="@null"
+        android:checked="false"
+        android:drawableRight="@drawable/selector_arrow"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:text="品牌"
+        android:textColor="#bbb"
+        android:textSize="13sp" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clipToPadding="true"
+        android:overScrollMode="never"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp" />
+
+</LinearLayout>
