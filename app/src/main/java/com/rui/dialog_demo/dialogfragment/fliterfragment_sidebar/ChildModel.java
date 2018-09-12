@@ -1,4 +1,4 @@
-package com.rui.dialog_demo.dialogfragment;
+package com.rui.dialog_demo.dialogfragment.fliterfragment_sidebar;
 
 /**
  * Created by rui on 2018/9/11
@@ -6,6 +6,9 @@ package com.rui.dialog_demo.dialogfragment;
 public class ChildModel {
     private int id;
     private String name;
+    /**
+     * 标识是否选中
+     */
     private boolean isSelect;
 
     public ChildModel() {

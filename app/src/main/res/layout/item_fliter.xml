@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
 
     <CheckBox
@@ -11,11 +12,13 @@
         android:button="@null"
         android:checked="false"
         android:drawableRight="@drawable/selector_arrow"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
-        android:text="品牌"
+        android:paddingBottom="10dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="10dp"
+        tools:text="品牌"
         android:textColor="#bbb"
-        android:textSize="13sp" />
+        android:textSize="12sp" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_item"
@@ -23,7 +26,7 @@
         android:layout_height="wrap_content"
         android:clipToPadding="true"
         android:overScrollMode="never"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp" />
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp" />
 
 </LinearLayout>

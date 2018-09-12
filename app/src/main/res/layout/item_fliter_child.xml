@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <CheckBox xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/ck_item_chirld"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="30dp"
     android:background="@drawable/selector_fliter_item"
     android:button="@null"
     android:checked="false"
     android:gravity="center"
-    android:paddingBottom="@dimen/dp_10"
-    android:paddingTop="@dimen/dp_10"
-    android:text="品牌"
+    tools:text="品牌"
     android:textColor="@drawable/selector_fliter_item_text"
-    android:textSize="13sp" />
+    android:textSize="12sp" />
 

@@ -1,8 +1,9 @@
-package com.rui.dialog_demo.dialogfragment;
+package com.rui.dialog_demo.dialogfragment.fliterfragment_sidebar;
 
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -18,7 +19,6 @@ import android.widget.TextView;
 
 import com.rui.dialog_demo.R;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -39,6 +39,10 @@ public class FliterDialogFragment extends DialogFragment {
     TextView tvComfirm;
     Unbinder unbinder;
 
+    /**
+     * 存储原来的数据，以便保存当前页面的选择状态
+     */
+    private List<ParentModel> testData;
     private FliterAdapter adapter;
 
     public static FliterDialogFragment newInstance() {
@@ -48,7 +52,6 @@ public class FliterDialogFragment extends DialogFragment {
         dialogFragment.setArguments(bundle);
         return dialogFragment;
     }
-
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -64,74 +67,13 @@ public class FliterDialogFragment extends DialogFragment {
     }
 
     private void initView() {
-        adapter = new FliterAdapter(getTestData());
+        adapter = new FliterAdapter(testData == null ? TestData.getTestData() : testData);
         LinearLayoutManager manager = new LinearLayoutManager(getActivity());
+        //手动开启共享RecycledViewPool特性
+        //LinearLayoutManager或其子类（如GridLayoutManager），需要手动开启这个特性
         manager.setRecycleChildrenOnDetach(true);
         rvData.setLayoutManager(manager);
         adapter.bindToRecyclerView(rvData);
-    }
-
-    private List<ParentModel> getTestData() {
-        ArrayList<ParentModel> data = new ArrayList<>();
-
-        ArrayList<ChildModel> childModels = new ArrayList<>();
-        ChildModel childModel = new ChildModel(1, "比逆");
-        childModels.add(childModel);
-        childModel = new ChildModel(1, "米蜜儿");
-        childModels.add(childModel);
-        childModel = new ChildModel(1, "佩寇");
-        childModels.add(childModel);
-        childModel = new ChildModel(1, "J21");
-        childModels.add(childModel);
-        childModel = new ChildModel(1, "哈乐莱");
-        childModels.add(childModel);
-        childModel = new ChildModel(1, "芒斯特");
-        childModels.add(childModel);
-        childModel = new ChildModel(1, "弗里睿路");
-        childModels.add(childModel);
-        childModel = new ChildModel(1, "U1潮品");
-        childModels.add(childModel);
-        childModel = new ChildModel(1, "野奈");
-        childModels.add(childModel);
-        childModel = new ChildModel(1, "潮流前线");
-        childModels.add(childModel);
-        ParentModel parentModel = new ParentModel(1, "品牌", childModels);
-        data.add(parentModel);
-
-
-        ArrayList<ChildModel> childModels1 = new ArrayList<>();
-
-        childModel = new ChildModel(1, "春季");
-        childModels1.add(childModel);
-        childModel = new ChildModel(1, "夏季");
-        childModels1.add(childModel);
-        childModel = new ChildModel(1, "秋季");
-        childModels1.add(childModel);
-        childModel = new ChildModel(1, "冬季");
-        childModels1.add(childModel);
-        ParentModel parentModel1 = new ParentModel(1, "季节", childModels1);
-        data.add(parentModel1);
-
-        ArrayList<ChildModel> childModels2 = new ArrayList<>();
-
-        childModel = new ChildModel(1, "裤子");
-        childModels2.add(childModel);
-        childModel = new ChildModel(1, "牛仔裤");
-        childModels2.add(childModel);
-        childModel = new ChildModel(1, "T恤");
-        childModels2.add(childModel);
-        childModel = new ChildModel(1, "衬衣");
-        childModels2.add(childModel);
-        childModel = new ChildModel(1, "针织衫");
-        childModels2.add(childModel);
-        childModel = new ChildModel(1, "风衣");
-        childModels2.add(childModel);
-        childModel = new ChildModel(1, "毛衣");
-        childModels2.add(childModel);
-        ParentModel parentModel2 = new ParentModel(1, "男装", childModels2);
-        data.add(parentModel2);
-
-        return data;
     }
 
     private void initParams() {
@@ -171,6 +113,8 @@ public class FliterDialogFragment extends DialogFragment {
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
+        //这一句代码，目的是保存原来数据
+        testData = adapter.getData();
     }
 
     @Nullable
@@ -181,14 +125,46 @@ public class FliterDialogFragment extends DialogFragment {
         return view;
     }
 
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+    }
+
     @OnClick({R.id.tv_reset, R.id.tv_comfirm})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_reset:
+                resetData();
                 break;
             case R.id.tv_comfirm:
+                //先组装参数
+                getSearchParams();
+                //组装完毕，发送事件到前一个页面更新搜索页面
+
                 dismiss();
                 break;
         }
+    }
+
+    /**
+     * 重置列表数据
+     */
+    private void resetData() {
+        List<ParentModel> data = adapter.getData();
+        for (ParentModel p : data) {
+            p.setExpand(false);
+            for (ChildModel c : p.getChildModels()) {
+                c.setSelect(false);
+            }
+        }
+        adapter.notifyDataSetChanged();
+    }
+
+    /**
+     * 组装搜索参数
+     */
+    private void getSearchParams() {
+        List<ParentModel> data = adapter.getData();
+        // TODO: 2018/9/12 以下添加处理组装搜索参数相关代码
     }
 }

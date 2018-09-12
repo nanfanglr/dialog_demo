@@ -8,9 +8,10 @@
         android:id="@+id/rv_data"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:overScrollMode="never"
         android:layout_weight="1"
-        android:paddingTop="@dimen/dp_10" />
+        android:clipToPadding="false"
+        android:paddingBottom="@dimen/dp_10"
+        android:overScrollMode="never" />
 
 
     <LinearLayout
@@ -19,23 +20,27 @@
         android:gravity="end"
         android:paddingBottom="@dimen/dp_10"
         android:paddingRight="@dimen/dp_10"
-        android:paddingTop="10dp">
+>
 
         <TextView
             android:id="@+id/tv_reset"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="#eee"
-            android:padding="10dp"
-            android:text="重置" />
+            android:layout_width="76dp"
+            android:layout_height="36dp"
+            android:background="@drawable/shape_fliter_reset"
+            android:gravity="center"
+            android:text="重置"
+            android:textSize="@dimen/sp_16"
+            android:textColor="@android:color/white" />
 
         <TextView
             android:id="@+id/tv_comfirm"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="#eee"
-            android:padding="10dp"
-            android:text="确定" />
+            android:layout_width="76dp"
+            android:layout_height="36dp"
+            android:background="@drawable/shape_fliter_comfirm"
+            android:gravity="center"
+            android:textSize="@dimen/sp_16"
+            android:text="确定"
+            android:textColor="@android:color/white" />
 
     </LinearLayout>
 </LinearLayout>

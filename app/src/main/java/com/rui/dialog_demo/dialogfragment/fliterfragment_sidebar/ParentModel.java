@@ -1,7 +1,9 @@
-package com.rui.dialog_demo.dialogfragment;
+package com.rui.dialog_demo.dialogfragment.fliterfragment_sidebar;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.rui.dialog_demo.dialogfragment.fliterfragment_sidebar.FliterItemAdapter.LIMITLOAD;
 
 /**
  * Created by rui on 2018/9/11
@@ -9,10 +11,13 @@ import java.util.List;
 public class ParentModel {
     private int id;
     private String name;
+    /**
+     * 标识是否展开
+     */
+    private boolean isExpand;
     private List<ChildModel> childModels;
 
     public ParentModel() {
-
     }
 
     public ParentModel(int id, String name, List<ChildModel> childModels) {
@@ -46,5 +51,17 @@ public class ParentModel {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public boolean isExpand() {
+        return isExpand && childModels.size() > LIMITLOAD;
+    }
+
+    public void setExpand(boolean expand) {
+        if (childModels.size() <= LIMITLOAD) {
+            //小于等于限定值，这里不做操作
+            return;
+        }
+        isExpand = expand;
     }
 }
