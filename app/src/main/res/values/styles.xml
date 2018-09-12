@@ -30,19 +30,19 @@
         <item name="android:windowExitAnimation">@anim/anim_popup_down</item>
     </style>
 
-    <style name="AppTheme.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-    </style>
+    <!--<style name="AppTheme.NoActionBar">-->
+        <!--<item name="windowActionBar">false</item>-->
+        <!--<item name="windowNoTitle">true</item>-->
+    <!--</style>-->
 
     <!--屏幕右侧的dialog-->
-    <style name="RightDialog" parent="AppTheme.NoActionBar">
+    <style name="FliterDialog" >
         <item name="android:windowIsFloating">true</item>
         <!-- Dialog进入及退出动画 -->
         <item name="android:windowAnimationStyle">@style/RightToLeftAnim</item>
     </style>
 
-    <!-- Dialog进入及退出动画 -->
+    <!-- fliterDialog进入及退出动画 -->
     <style name="RightToLeftAnim" parent="android:Animation">
         <item name="android:windowEnterAnimation">@anim/right_in</item>
         <item name="android:windowExitAnimation">@anim/right_out</item>

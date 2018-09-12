@@ -27,6 +27,9 @@ import butterknife.OnClick;
 import butterknife.Unbinder;
 
 /**
+ * 从右侧弹出的筛选界面（仿淘宝），用recyclerviewrecyclerview嵌套实现，状态保存、重置均已实现
+ * 1、嵌套recyclerview间共享RecycledViewPool，优化性能
+ * 2，recyclerview局部刷新
  * Created by rui on 2018/9/11
  */
 public class FliterDialogFragment extends DialogFragment {
@@ -56,7 +59,7 @@ public class FliterDialogFragment extends DialogFragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setStyle(DialogFragment.STYLE_NO_TITLE, R.style.RightDialog);
+        setStyle(DialogFragment.STYLE_NO_TITLE, R.style.FliterDialog);
     }
 
     @Override
