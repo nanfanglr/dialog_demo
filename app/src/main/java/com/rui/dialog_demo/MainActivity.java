@@ -24,6 +24,7 @@ public class MainActivity extends FragmentActivity {
      * 当需要记住状态时，我们就定义一个全部变量保存改fragment，以便第二次暂时
      */
     FliterDialogFragment fliterDialogFragment;
+    long lastTime = 0l;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +33,7 @@ public class MainActivity extends FragmentActivity {
         ButterKnife.bind(this);
     }
 
-    @OnClick({R.id.btn, R.id.btn1})
+    @OnClick({R.id.btn, R.id.btn1, R.id.btn2, R.id.btn3})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn:
@@ -44,6 +45,15 @@ public class MainActivity extends FragmentActivity {
                 }
                 fliterDialogFragment.show(getSupportFragmentManager(), "FliterDialogFragment");
                 Log.i("MainActivity", fliterDialogFragment.toString());
+                break;
+            case R.id.btn2:
+                if (lastTime != 0l) {
+                    Log.d("------------------>", "" + (System.currentTimeMillis() - lastTime));
+                }
+                lastTime = System.currentTimeMillis();
+                break;
+            case R.id.btn3:
+                startActivity(new Intent(MainActivity.this, WebviewActivity.class));
                 break;
         }
     }
