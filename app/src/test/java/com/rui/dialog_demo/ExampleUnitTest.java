@@ -140,4 +140,15 @@ public class ExampleUnitTest {
         }
     }
 
+    @Test
+    public void builderTest() {
+        BuilderFactory build = new BuilderFactory.Builder()
+                .withCpu("Intel-88")
+                .withBoard("weixin")
+                .withHhd("susam")
+                .withScreen("jingdongfang")
+                .build();
+        System.out.print(build.toString());
+    }
+
 }
