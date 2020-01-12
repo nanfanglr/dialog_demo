@@ -79,6 +79,19 @@ public class FliterDialogFragment extends DialogFragment {
         adapter.bindToRecyclerView(rvData);
     }
 
+    //这里没有用到以下的优化，但是当RecyclerView加载卡顿时可以考虑以下的优化方式：
+    //可以指定缓存的大小，通过调用myPool.setMaxRecycledViews(0, 10);来设置每种类型的View的容量。
+    //需要注意的是对于ViewType的定义，对同一个RecycerViewPool要统一，
+    // 因为在RecyclerView的实现中，是以ViewType来作Key来获取对应的对象池。否则就会出现奇怪的问题。
+    //RecycledViewPool   缓存的不同 类型viewType 的数量是不限的，
+    // 但是每个viewType 的具体ViewHolder 最多为5个。
+    // 可以通过setMaxRecycledViews方法 设置某个viewType 的最大尺寸。
+    //    pool = rvData.getRecycledViewPool();
+    //    pool.setMaxRecycledViews(viewType, maxRvs);
+    //    for (int i = 0; i < 10; i++) {
+    //        pool.putRecycledView(rvData.getAdapter().createViewHolder(rvData, viewType));
+    //    }
+
     private void initParams() {
         Dialog dialog = getDialog();
         Window window = getDialog().getWindow();

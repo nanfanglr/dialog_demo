@@ -52,34 +52,21 @@ public class BounceViewActivity extends AppCompatActivity {
         list.add(new DialogItem(R.drawable.icon_shouye, "第二个"));
         list.add(new DialogItem(R.drawable.icon_wo, "第三个"));
 
-        findViewById(R.id.text).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        findViewById(R.id.text).setOnClickListener(v -> {
 //                Toast.makeText(MainActivity.this, "点击了我", Toast.LENGTH_SHORT).show();
-                dialog = getDialog(BounceViewActivity.this, list, new BaseQuickAdapter.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                        dialog.dismiss();
-                        Toast.makeText(BounceViewActivity.this, "点击了" + position, Toast.LENGTH_SHORT).show();
-                    }
-                });
+            dialog = getDialog(BounceViewActivity.this, list, (adapter, view, position) -> {
+                dialog.dismiss();
+                Toast.makeText(BounceViewActivity.this, "点击了" + position, Toast.LENGTH_SHORT).show();
+            });
 
-            }
         });
 
-        findViewById(R.id.text2).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        findViewById(R.id.text2).setOnClickListener(v -> {
 //                Toast.makeText(MainActivity.this, "点击了我", Toast.LENGTH_SHORT).show();
-                dialog = getDialog2(BounceViewActivity.this, list, new BaseQuickAdapter.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                        dialog.dismiss();
-                        Toast.makeText(BounceViewActivity.this, "点击了" + position, Toast.LENGTH_SHORT).show();
-                    }
-                });
-
-            }
+            dialog = getDialog2(BounceViewActivity.this, list, (adapter, view, position) -> {
+                dialog.dismiss();
+                Toast.makeText(BounceViewActivity.this, "点击了" + position, Toast.LENGTH_SHORT).show();
+            });
         });
     }
 
