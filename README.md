@@ -9,3 +9,4 @@
 
 [4.webview加载html字符串](https://github.com/nanfanglr/dialog_demo/tree/master/app/src/main/java/com/rui/dialog_demo/WebviewActivity.java)
 
+[5.测试文件中策略模式的lambda表达式简单使用](https://github.com/nanfanglr/dialog_demo/blob/master/app/src/test/java/com/rui/dialog_demo/StrategyTest.java)
